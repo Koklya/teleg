@@ -1,0 +1,146 @@
+@import "/nullStyle.scss";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+@mixin center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  @include center;
+  color: white;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgb(24, 24, 24);
+  .columns {
+    width: 60vw;
+    height: 100vh;
+    display: flex;
+  }
+
+  .list {
+    width: 30vw;
+    height: 100vh;
+    background-color: rgb(33, 33, 33);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menus {
+    height: 15vh;
+    padding: 0px 10px 0px 20px;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0px;
+    height: 5vh;
+  }
+
+  .burger {
+    img {
+      width: 50px;
+      cursor: pointer;
+    }
+  }
+}
+.search {
+  position: relative;
+  img {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    width: 25px;
+    cursor: pointer;
+  }
+  input {
+    width: 350px;
+    height: 50px;
+    border: 1px solid rgb(69, 69, 69);
+    border-radius: 40px;
+    padding-left: 50px;
+    transition: 0.1s;
+    &:hover {
+      border: 2px solid rgb(94, 94, 94);
+    }
+  }
+}
+
+.historys {
+  @include center;
+  height: 8vh;
+  gap: 30px;
+}
+
+.history {
+  @include center;
+  flex-direction: column;
+}
+
+.historyName {
+}
+.historyAvatar {
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid purple;
+  }
+}
+
+.sections {
+  height: 2vh;
+  @include center;
+}
+
+.chats {
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.chatPreview {
+  padding: 10px;
+  display: flex;
+  border-radius: 10px;
+  transition: 0.3s;
+  &:hover {
+    background-color: rgb(50, 50, 50);
+  }
+}
+
+.chatName {
+  margin: 10px;
+  font-weight: 600;
+}
+
+.chatAvatar {
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+}
+
+.messages {
+  width: 70vw;
+  height: 100vh;
+  background-image: url("https://i.pinimg.com/736x/d2/bf/d3/d2bfd3ea45910c01255ae022181148c4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+hr {
+  color: white;
+  width: auto;
+  border-top: 2px solid rgb(50, 50, 50);
+}
