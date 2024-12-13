@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 //@ts-ignore
 import styles from "../Home/Home.module.scss";
 
 import { History } from "../../data/History.ts";
 import { Chats } from "../../data/Chatss.ts";
 
+interface MessI{
+  author: string,
+  sendTime: string,
+  mess: string,
+}
+
+const Mess:MessI ={
+  author: '',
+  sendTime: '',
+  mess: '',
+}
+
 const Home = () => {
+const [mess, setMess] = useState<MessI>(Mess)  
+const [messagesHistory, setMessagesHistory] = useState<MessI[]>([])  
+
+const handleChangeMess = (event:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, d:number) =>{
+  const m = event.target.value
+  setMess({...mess, mess:m})
+}
+
+const sendMess = () => setMessagesHistory([...messagesHistory, mess])
   return (
     <div className={styles.chat}>
       <div className={styles.columns}>
@@ -55,7 +76,14 @@ const Home = () => {
             })}
           </div>
         </div>
-        <div className={styles.messages}>Mes</div>
+        <div className={styles.messages}>
+        <div className={styles.messagesTest}>
+          <input type="text" onChange={(event) => handleChangeMess(event, Date.now())} value={mess.mess}/>
+          <button onClick={sendMess}>Отправить</button>
+          {messagesHistory.map((e) => e.mess)}
+        </div>
+          
+        </div>
       </div>
     </div>
   );
