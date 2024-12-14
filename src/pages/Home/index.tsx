@@ -5,28 +5,52 @@ import styles from "../Home/Home.module.scss";
 import { History } from "../../data/History.ts";
 import { Chats } from "../../data/Chatss.ts";
 
-interface MessI{
+interface messageDataI{
   author: string,
-  sendTime: string,
-  mess: string,
+  date: DateI,
+  messageText: string
 }
 
-const Mess:MessI ={
-  author: '',
-  sendTime: '',
-  mess: '',
+interface DateI{
+  month: string,
+  day: string,
+  hours: string,
+  mins: string,
+  sec: string 
 }
 
 const Home = () => {
-const [mess, setMess] = useState<MessI>(Mess)  
-const [messagesHistory, setMessagesHistory] = useState<MessI[]>([])  
+  const messageShell: messageDataI = {
+    author: '',
+    date:{
+      month: '',
+      day: '',
+      hours: '',
+      mins: '',
+      sec: '' 
+    },
+    messageText: ''
+  }
 
-const handleChangeMess = (event:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, d:number) =>{
-  const m = event.target.value
-  setMess({...mess, mess:m})
-}
+  const [messageData, setMessageData] = useState<messageDataI>(messageShell)
+  const [messageHistory, setMessageHistory] = useState<messageDataI[]>([])
 
-const sendMess = () => setMessagesHistory([...messagesHistory, mess])
+  const updateMessageData = (event:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>{
+    const d = new Date()
+    const qurrDate = {
+      month: `${d.getMonth()}`,
+      day: `${d.getDate()}`,
+      hours: `${d.getHours()}`,
+      mins: `${d.getMinutes()}`,
+      sec: `${d.getSeconds()}` 
+    }
+    setMessageData({...messageData, messageText: event.target.value, date: qurrDate})
+  }
+
+  const sendMessage = () => {
+    setMessageHistory([...messageHistory, messageData])
+  }
+
   return (
     <div className={styles.chat}>
       <div className={styles.columns}>
@@ -77,10 +101,15 @@ const sendMess = () => setMessagesHistory([...messagesHistory, mess])
           </div>
         </div>
         <div className={styles.messages}>
-        <div className={styles.messagesTest}>
-          <input type="text" onChange={(event) => handleChangeMess(event, Date.now())} value={mess.mess}/>
-          <button onClick={sendMess}>Отправить</button>
-          {messagesHistory.map((e) => e.mess)}
+        <div className={styles.messagesHeader}></div>
+        <div className={styles.messagesBox}>
+
+        </div>
+        <div className={styles.messagesSendMenu}>
+          <input type="text" onChange={updateMessageData}  value={messageData.messageText} placeholder="Message"/>
+          <button onClick={sendMessage}>
+            <img src="https://i.pinimg.com/originals/55/a2/63/55a2637e98653d89fd4dd5742932c5f5.png" alt="" />
+          </button>
         </div>
           
         </div>
